@@ -26,13 +26,25 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 tinymce.PluginManager.add('highcharts', function (editor, url) {
     var modal = highed.ModalEditor(false, {
                     features: 'import templates customize welcome done',
-                    allowDone: true
+                    allowDone: true,
+                    defaultChartOptions: {
+                     xAxis: {
+                        labels: {
+                          useHTML: true
+                        }
+                      },
+                      yAxis: {
+                        labels: {
+                          useHTML: true
+                        }
+                      }
+                    }
                 }, function (chart) {
                    var html = chart.export.html(true);
-                   editor.insertContent('<div class="mceNonEditable">' + html + '</div><p></p>');                
+                   editor.insertContent('<div class="mceNonEditable">' + html + '</div><p></p>');
                 })
-    ; 
-    
+    ;
+
     editor.addButton('highcharts', {
         title: 'Highcharts (Interactive)',
         image: WPURLS.pluginurl + 'logo.png',
