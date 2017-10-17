@@ -26,6 +26,7 @@ function highcharts_allow_stuff($initArray) {
 }
 
 function setup_highcharts_plugin () {
+    wp_enqueue_script("highcharts-highstock",  plugin_dir_url(__FILE__) . "highstock.js"); 
     if (!current_user_can('edit_posts') && !current_user_can('edit_pages')) {
          return;
     }
@@ -37,9 +38,7 @@ function setup_highcharts_plugin () {
     add_filter('mce_external_plugins','init_highcharts_plugin');
     add_filter('mce_buttons', 'add_tinymce_toolbar_button');
     add_filter('tiny_mce_before_init', 'highcharts_allow_stuff');
-
   
-    wp_enqueue_script("highcharts-highstock",  plugin_dir_url(__FILE__) . "highstock.js");   
     wp_enqueue_script("highcharts-framework",  plugin_dir_url(__FILE__) . "standalone-framework.js");  
     wp_enqueue_script("highcharts-more",       plugin_dir_url(__FILE__) . "highcharts-more.js");   
     wp_enqueue_script("highcharts-3d",         plugin_dir_url(__FILE__) . "highcharts-3d.js"); 
